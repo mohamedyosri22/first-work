@@ -50,7 +50,7 @@ public class UserController {
 	// create user
 	//http://localhost:9090/api/users
 	@PostMapping("/users")
-	public User createUser(@RequestBody User user) {
+	public User createUser(User user) {
 		senderService.sendEmail(user);
 		return this.userRepository.save(user);
 	}
