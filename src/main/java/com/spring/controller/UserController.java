@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//http://localhost:8080
+//http://localhost:9090
 
 @RestController
 @RequestMapping("/api")
@@ -32,7 +32,7 @@ public class UserController {
 	private EmailSenderService senderService;
 
 	// get all users
-	//http://localhost:8080/api/users
+	//http://localhost:9090/api/users
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
 		return this.userRepository.findAll();
@@ -40,7 +40,7 @@ public class UserController {
 
 
 	// get user by id
-	//http://localhost:8080/api/user/1
+	//http://localhost:9090/api/user/1
 	@GetMapping("/user/{id}")
 	public User getUserById(@PathVariable ("id") long userId) {
 		return this.userRepository.findById(userId)
@@ -48,7 +48,7 @@ public class UserController {
 	}
 
 	// create user
-	//http://localhost:8080/api/users
+	//http://localhost:9090/api/users
 	@PostMapping("/users")
 	public User createUser(@RequestBody User user) {
 		senderService.sendEmail(user);
@@ -56,7 +56,7 @@ public class UserController {
 	}
 
 	// update user
-	//http://localhost:8080/api/users/1
+	//http://localhost:9090/api/users/1
 	@PutMapping("/users/{id}")
 	public User updateUser(@RequestBody User user, @PathVariable ("id") long userId) {
 		 User existingUser = this.userRepository.findById(userId)
@@ -64,12 +64,15 @@ public class UserController {
 		 existingUser.setFirstName(user.getFirstName());
 		 existingUser.setLastName(user.getLastName());
 		 existingUser.setEmail(user.getEmail());
+		existingUser.setPhone(user.getPhone());
+		existingUser.setSubject(user.getSubject());
+		existingUser.setBody(user.getBody());
 		 return this.userRepository.save(existingUser);
 	}
 
 	
 	// delete user by id
-	//http://localhost:8080/api/users/1
+	//http://localhost:9090/api/users/1
 	@DeleteMapping("/users/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable ("id") long userId){
 		 User existingUser = this.userRepository.findById(userId)
