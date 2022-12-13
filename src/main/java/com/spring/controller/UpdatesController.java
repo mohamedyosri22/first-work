@@ -19,6 +19,21 @@ public class UpdatesController {
     @Autowired
     private ArticlesRepo articlesRepo;
 
+
+    @PostMapping("/addNews")
+    public String addNews(@RequestBody News news){
+        newsRepo.save(news);
+
+        return "added !!";
+    }
+
+    @PostMapping("/addArticles")
+    public String addArticles(@RequestBody Articles articles){
+        articlesRepo.save(articles);
+
+        return "added !!";
+    }
+
     @PostMapping("/news")
     public String updateNews(@RequestBody News news){
         News CurrentNews = newsRepo.findById(news.getId()).get();
