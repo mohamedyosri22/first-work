@@ -26,8 +26,6 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
-	String test= "test";
-
 	@Autowired
 	private EmailSenderService senderService;
 

@@ -19,18 +19,13 @@ public class AdminController {
     @Autowired
     private UserRepository userRepository;
 
-    //http://localhost:9090/api/Getusers
+    //http://localhost:9090/api/getUsers
     @GetMapping("/getUsers")
     public String getAdmin(){
 
         return "admin";
     }
 
-    @GetMapping("/get")
-    public String get(){
-
-        return "index";
-    }
 
 
 
